@@ -24,5 +24,24 @@ Sukurti programą, kuri nuskaito studentų vardus, pavardes, namų darbų pažym
 - Pakeista struktūra.
 - Sukurta funkcija galutiniui pažymiui skaičiuoti.
 
-## Pastaba.
-10-15 sutvarkyta repozitorija. Koreguotos šakos, pakeisti failai, tačiau nekeistas jų turinys.
+## Pastaba. (10-15)
+Sutvarkyta repozitorija. Koreguotos šakos, pakeisti failai, tačiau nekeistas jų turinys.
+
+## v0.3 (10-15)
+
+**Nauja**
+- Funkcijos ir struktūra iškeltos į *header* failus.
+- *Exception handling*. Įvedant duomenis (pasirinkimus, studentų skaičių, pažymius), tikrinama, ar reikšmė teisinga: pasirinkimai tik 1 arba 2, studentų skaičius didesnis nei 1, pažymiai intervale 0-10 (0 paliekamas kaip pasirinkimas, kai yra neatsiskaita).
+
+**Koreguota**
+- Keista struktūra; kintamasis *homework* iš masyvo pakeistas į vektorių.
+- Namų darbų įvedimas - baigus užtenka paspausti *enter*.
+- Funkcijoje *findMedian* pakeistas rūšiavimas.
+- Funkcijos *countMean* ir *findMedian* pakeistos į atitinkamai *finalByMean* ir *finalByMedian*, jose iškart skaičiuojami galutiniai pažymiai, o ne namų darbų vidurkis ar mediana, todėl panaikinta ir ankstesnė galutinį pažymį skaičiuojanti funkcija.
+
+**Galima keisti**
+- Rezultatų išvedimo kodo dalį padaryti atskiroje funkcijoje.
+- Galbūt kaip nors optimizuoti pasirinkimus.
+- Namų darbų įvedimas vis tiek lieka neidealus – netyčia paspaudus *enter* dar nepradėjus vesti namų darbų (įvedus tik egzaminą), neskaičiuojami vidurkiai, nes nėra dalies duomenų.
+- Nuskaitymą iš failo pritaikyti bet kuriam turiniui. T.y. namų darbų kiekio nežinant iš anksto, o tik nuskaičius pirmąją failo eilutę.
+- KOMENTUOTI programos kodą!
