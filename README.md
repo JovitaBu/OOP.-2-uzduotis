@@ -23,3 +23,6 @@ Sukurti programą, kuri nuskaito studentų vardus, pavardes, namų darbų pažym
 - Pašalintos nereikalingos eilutės, paliktos per neapsižiūrėjimą (kintamas *sum* ir veiksmai su juo).
 - Pakeista struktūra.
 - Sukurta funkcija galutiniui pažymiui skaičiuoti.
+
+## Pastaba.
+10-15 sutvarkyta repozitorija. Koreguotos šakos, pakeisti failai, tačiau nekeistas jų turinys.
