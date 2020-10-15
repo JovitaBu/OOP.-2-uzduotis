@@ -185,6 +185,5 @@ int main() {
             cout << std::left << std::setw(20) << student[i].name << std::setw(20) << student[i].surname << std::setw(20) << student[i].finalGradeMean << std::setw(20) << student[i].finalGradeMedian << "\n";
         }
     }
-
     return 0;
 }
