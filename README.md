@@ -4,7 +4,7 @@
 
 Sukurti programą, kuri nuskaito studentų vardus, pavardes, namų darbų pažymius ir egzamino įvertinimą bei suskačiuoja galutinį balą. Taikoma formulė GALUTINIS = 0,4×VIDURKIS + 0,6×EGZAMINAS. 
 
-## v0.1
+## v0.1 (09-27)
 
 - Nuskaitomi duomenys (vardas, pavardė, egzamino įvertinimas, namų darbai).
 - Galutinis balas skaičiuojamas pasirinktinai pagal namų darbų vidurkį arba medianą.
