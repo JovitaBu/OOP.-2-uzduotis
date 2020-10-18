@@ -51,6 +51,9 @@ Sutvarkyta repozitorija. Koreguotos šakos, pakeisti failai, tačiau nekeistas j
 **Nauja**
 - Programos pradžioje galima pasirinkti failų generavimą: jie sugeneruojami, nuskaitomi, studentai suskirstomi į dvi grupes: *kietuoliai*, kurių galutinis balas >= 5 ir *vargšiukai*, kurių galutinis < 5, grupės įrašomos į atskirus failus. Visų procesų metu skaičiuojamas laikas.
 
+Laiko testavimas, gaunama *bad allocation* klaida, kai bandoma išskirstyti 10 mln. studentų
+ ![](test.png)
+
 **Koreguota**
 - Atsitiktiniai skaičiai generuojami naudojant *chrono*, nebe *rand()*.
 - Galutiniui balui skaičiuoti pridėta funkcija *final*.
