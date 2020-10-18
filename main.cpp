@@ -1,7 +1,7 @@
 #include "comparator.h"
 #include "final.h"
 #include "check.h"
-#include "generation.h"
+#include "createFiles.h"
 #include "reading.h"
 #include "distribution.h"
 #include "output.h"
