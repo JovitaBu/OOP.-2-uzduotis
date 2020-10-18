@@ -45,3 +45,18 @@ Sutvarkyta repozitorija. Koreguotos šakos, pakeisti failai, tačiau nekeistas j
 - Namų darbų įvedimas vis tiek lieka neidealus – netyčia paspaudus *enter* dar nepradėjus vesti namų darbų (įvedus tik egzaminą), neskaičiuojami vidurkiai, nes nėra dalies duomenų.
 - Nuskaitymą iš failo pritaikyti bet kuriam turiniui. T.y. namų darbų kiekio nežinant iš anksto, o tik nuskaičius pirmąją failo eilutę.
 - KOMENTUOTI programos kodą!
+
+## v0.4
+
+**Nauja**
+- Programos pradžioje galima pasirinkti failų generavimą: jie sugeneruojami, nuskaitomi, studentai suskirstomi į dvi grupes: *kietuoliai*, kurių galutinis balas >= 5 ir *vargšiukai*, kurių galutinis < 5, grupės įrašomos į atskirus failus. Visų procesų metu skaičiuojamas laikas.
+
+**Koreguota**
+- Atsitiktiniai skaičiai generuojami naudojant *chrono*, nebe *rand()*.
+- Galutiniui balui skaičiuoti pridėta funkcija *final*.
+- Rezultatų išvedimui parašyta atskira funkcija.
+- Programa gana smulkiai komentuojama.
+
+**Galima keisti**
+- Vis dar daug *if*'ų *if*'e ir pasikartojančio kodo.
+- Visiškai nekeistas *kursiokai.txt* nuskaitymas.
