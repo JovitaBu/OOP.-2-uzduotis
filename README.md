@@ -46,7 +46,7 @@ Sutvarkyta repozitorija. Koreguotos šakos, pakeisti failai, tačiau nekeistas j
 - Nuskaitymą iš failo pritaikyti bet kuriam turiniui. T.y. namų darbų kiekio nežinant iš anksto, o tik nuskaičius pirmąją failo eilutę.
 - KOMENTUOTI programos kodą!
 
-## v0.4
+## v0.4 (10-18)
 
 **Nauja**
 - Programos pradžioje galima pasirinkti failų generavimą: jie sugeneruojami, nuskaitomi, studentai suskirstomi į dvi grupes: *kietuoliai*, kurių galutinis balas >= 5 ir *vargšiukai*, kurių galutinis < 5, grupės įrašomos į atskirus failus. Visų procesų metu skaičiuojamas laikas.
