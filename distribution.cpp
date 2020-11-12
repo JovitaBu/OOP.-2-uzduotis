@@ -25,3 +25,25 @@ void distribute(std::vector<Data> student, std::vector<Data> &good, std::vector<
     //išvedamas laiko skaičiavimo rezultatas
     std::cout << student.size() << " studentu suskirstyti pagal vidurki per " << std::chrono::duration<double>(end - start).count() << " s." << std::endl;
 }
+
+void distribute(std::list<Data> student, std::list<Data> &good, std::list<Data> &bad){
+
+    //pradedamas skaičiuoti laikas
+    auto start = std::chrono::high_resolution_clock::now();
+
+    //skirstomi studentai
+    for (Data s : student){
+        if (s.finalGradeMean < 5.00){
+            bad.push_back(s);
+        }
+        else{
+            good.push_back(s);
+        }
+    }
+
+    //stabdomas laiko skaičiavimas
+    auto end = std::chrono::high_resolution_clock::now();
+
+    //išvedamas laiko skaičiavimo rezultatas
+    std::cout << student.size() << " studentu suskirstyti pagal vidurki per " << std::chrono::duration<double>(end - start).count() << " s." << std::endl;
+}
