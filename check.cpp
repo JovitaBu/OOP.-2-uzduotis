@@ -21,12 +21,12 @@ void checkChoice(int &a){
     } while (cin.fail() || (a!=1 && a!=2));
 }
 
-void checkStudentCount(int &a){
+void checkCount(int &a){
     cin >> a;
     do{
         try{
             if (cin.fail() || a < 1){
-                throw std::runtime_error("\nNeteisingai ivestas studentu skaicius. ");
+                throw std::runtime_error("\nNeteisingai ivestas kiekis. ");
             }
         }
         catch(const std::runtime_error& e){
