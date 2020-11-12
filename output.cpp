@@ -6,6 +6,8 @@ using std::setw;
 
 
 void results(std::vector<Data> student, int countBy){
+
+    //kai reikia išvesti galutinį ir pagal vidurkį, ir pagal medianą
     if (countBy == 0){
         cout <<  left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis (vid.)" << setw(20) << "Galutinis (med.)";
         cout << "\n--------------------------------------------------------------------------------\n";
@@ -15,6 +17,7 @@ void results(std::vector<Data> student, int countBy){
         }
     }
 
+    //kai reikia išvesti galutinį pagal vidurkį
     if (countBy == 1){
         cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis (vid.)";
         cout << "\n------------------------------------------------------\n";
@@ -24,6 +27,7 @@ void results(std::vector<Data> student, int countBy){
         }
     }
 
+    //kai reikia išvesti galutinį pagal medianą
     if (countBy == 2){
         cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis (med.)";
         cout << "\n------------------------------------------------------\n";
