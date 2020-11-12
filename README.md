@@ -63,3 +63,24 @@ Laiko testavimas, gaunama *bad allocation* klaida, kai bandoma išskirstyti 10 m
 **Galima keisti**
 - Vis dar daug *if*'ų *if*'e ir pasikartojančio kodo.
 - Visiškai nekeistas *kursiokai.txt* nuskaitymas.
+
+## v0.5 (11-12)
+
+**Nauja**
+- Pridėta dalis, kurioje naudojamas sąrašas (list), kad galėtų būtų palyginta veikimo sparta. Atitinkamos funkcijos parašytos naudojant *function overloading* metodą (to paties pavadinimo funkcijos, tik su skirtingais parametrais).
+
+Kadangi failų kūrimas užtruko ilgiau nei vykdant v0.4, tai pakartotas ir bandymas su vektoriais.
+
+![](test_vector.png)
+![](test_list.png)
+
+Tiek darbas su vektoriais, tiek su sąrašais, užtrunka panašų laiko tarpą (lyginant tik duomenų nuskaitymą ir studentų skirstymą). Vis dėlto optimaliai palyginti neįmanoma, nes abu kartus failų kūrimas trunka skirtingą laiką, o tai reiškia, kad galbūt tuo metu kompiuteris veikė lėčiau/greičiau. Pavyzdžiui, 10mln. studentų duomenų failų kūrimas skyrėsi net beveik 20 sekundžių.
+
+**Koreguota**
+- Optimizuota *checkStudentCount* funkcija *check.cpp* faile.
+- Dėl naudojama kompiliatoriaus, *main.cpp* faile *include*'inami *.cpp*, o ne *.h* failai. Anksčiau kodas buvo keistas ir rašytas su *header* failais, tačiau galiausiai nuspręsta palikti su *.cpp*.
+
+**Naudoto kompiuterio parametrai**
+- CPU: Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz 2.71GHz
+- RAM: 8GB
+- HDD: SSD
