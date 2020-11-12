@@ -64,3 +64,27 @@ void writeFile(std::string fileName, std::vector<Data> student, int homeworkCoun
     //išvedamas laiko skaičiavimo rezultatas
     std::cout << studentType << " failas su " << student.size() << " studentu duomenimis sukurtas per " << std::chrono::duration<double>(end - start).count() << " s." << std::endl;
 }
+
+void writeFile(std::string fileName, std::list<Data> student, int homeworkCount, std::string studentType){
+    
+    //pradedamas skaičiuoti laikas
+    auto start = std::chrono::high_resolution_clock::now();
+    std::ofstream file (fileName);
+
+    //pirma failo eilutė
+    file << left << setw(15) << "Vardas" << left << setw(15) << "Pavarde" << left << setw(10) << "Galutinis" << std::endl;
+
+    //įrašomi studentų duomenys, vardai, pavardės, galutiniai balai
+    for (Data s : student){
+        file << left << setw(15) << s.name << left << setw(15) << s.surname << left << setw(10) << s.finalGradeMean << std::endl;
+    }
+
+    //uždaromas failas
+    file.close();
+
+    //sustabdomas laiko skaičiavimas
+    auto end = std::chrono::high_resolution_clock::now();
+
+    //išvedamas laiko skaičiavimo rezultatas
+    std::cout << studentType << " failas su " << student.size() << " studentu duomenimis sukurtas per " << std::chrono::duration<double>(end - start).count() << " s." << std::endl;
+}
