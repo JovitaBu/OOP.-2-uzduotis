@@ -4,5 +4,5 @@
 #include <stdexcept>
 
 void checkChoice(int &a);
-void checkStudentCount(int &a);
+void checkCount(int &a);
 void checkGrade(float &a);
