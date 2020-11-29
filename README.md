@@ -84,3 +84,102 @@ Tiek darbas su vektoriais, tiek su sąrašais, užtrunka panašų laiko tarpą (
 - CPU: Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz 2.71GHz
 - RAM: 8GB
 - HDD: SSD
+
+## v1.0 (11-29)
+
+**Nauja**
+
+Pratestuotos dar dvi strategijos studentams skirstyti:
+1. Senoji strategija - iš konteinerio *student* sukant ciklą tikrinti kiekvieno studento pažymį ir atitinkamai įrašyti į *good* ar *bad* konteinerį.
+```cpp
+void distribute1(std::vector<Data> student, std::vector<Data> &good, std::vector<Data> &bad){
+
+    good.reserve(student.size()/2);
+    bad.reserve(student.size()/2);
+    
+    for (Data s : student){
+        if (s.finalGradeMean < 5.00){
+            bad.push_back(s);
+        }
+        else{
+            good.push_back(s);
+        }
+    }
+}
+
+void distribute1(std::list<Data> student, std::list<Data> &good, std::list<Data> &bad){
+
+    for (Data s : student){
+        if (s.finalGradeMean < 5.00){
+            bad.push_back(s);
+        }
+        else{
+            good.push_back(s);
+        }
+    }
+}
+```
+
+2. *student* surūšiuojama pagal pažymius didėjančia tvarka. Tada sukant ciklą imamas kiekvienas studentas iš eilės, jei pažymys < 5, jis įrašomas į *bad* konteinerį. Kai pasiekiamas studentas, kurio vidurkis >= 5, ciklas stabdomas ir įsimenamas paskutinis tikrintas studentas. Tai panaudojama iš *student* ištrinant visus elementus, kurie buvo įrašyti į *bad*. Rezultatas - panaudoti tik du konteineriai, tačiau sukeistas pradinis studentų eiliškumas.
+
+```cpp
+void distribute2(std::vector<Data> &student, std::vector<Data> &bad){
+
+    bad.reserve(student.size()/2);
+    int last = 0;
+
+    sort(student.begin(), student.end(), [](Data firstStudent, Data secondStudent){ return firstStudent.finalGradeMean < secondStudent.finalGradeMean; });
+
+    for (Data s : student){
+        if (s.finalGradeMean < 5){
+            bad.push_back(s);
+            last++;
+        }
+        else{
+           break; 
+        }
+    }
+    student.erase(student.begin(), student.begin()+last);
+}
+
+void distribute2(std::list<Data> &student, std::list<Data> &bad){
+
+    int last = 0;
+
+    student.sort([](Data firstStudent, Data secondStudent){ return firstStudent.finalGradeMean < secondStudent.finalGradeMean; });
+
+    for (Data s : student){
+        if (s.finalGradeMean < 5){
+            bad.push_back(s);
+            last++;
+        }
+        else{
+           break; 
+        }
+    }
+    std::list<Data>::iterator it = student.begin();
+    std::advance(it, last);
+    student.erase(student.begin(), it);
+}
+```
+3. Naudojama *std::copy_if* ir *std::remove_if*. Tokiu būdu panaudojami du konteineriai ir nepakeičiamas pradinis studentų eiliškumas.
+
+```cpp
+void distribute3(std::vector<Data> &student, std::vector<Data> &bad){
+
+    bad.reserve(student.size()/2);
+
+    std::copy_if(student.begin(), student.end(), std::back_inserter(bad), [](Data s){return s.finalGradeMean < 5;});
+    student.erase(std::remove_if(student.begin(), student.end(), [](Data s){return s.finalGradeMean < 5;}), student.end());
+}
+
+void distribute3(std::list<Data> &student, std::list<Data> &bad){
+
+    std::copy_if(student.begin(), student.end(), std::back_inserter(bad), [](Data s){return s.finalGradeMean < 5;});
+    student.erase(std::remove_if(student.begin(), student.end(), [](Data s){return s.finalGradeMean < 5;}), student.end());
+}
+```
+
+![](time_test.png)
+
+Pratestavus visas strategijas abiems konteinerių tipams ir keturiems skirtingiems dydžiams, rezultatai surašyti lentelėje aukščiau (laikas sekundėmis). Akivaizdu, kad antroji strategija nepasiteisina, pirmoji veikia greičiau nei trečioji, tačiau trečia reikalauja mažiau naudojamos atminties. Pastaroji ir paliekama galutiniame variante.
