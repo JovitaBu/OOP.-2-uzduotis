@@ -49,7 +49,6 @@ int main() {
 
             //kintamasis namų darbų kiekiui, kurį įveda vartotojas, vektorius good - studentams, kurių vidurkiai >= 5, ir bad - kurių vidurkiai < 5
             int homeworkCount;
-            vector<Data> good;
             vector<Data> bad;
 
             //vartotojas įveda namų darbų kiekį
@@ -72,18 +71,17 @@ int main() {
                 //nuskaitomas failas į student vektorių
                 readFile(student, studentCount, homeworkCount, fileName);
 
-                //studentai suskirstomi pagal vidurkį, vektorius student ištrinamas, panaikinama jo užimama atmintis
-                distribute(student, good, bad);
+                //studentai suskirstomi pagal vidurkį
+                distribute(student, bad);
+                
+                //suskirstyti studentai įrašomi į atskirus failus, vektoriai ištrinami ir panaikinama jų užimama atmintis
+                writeFile("kietuoliai" + std::to_string(studentCount) + ".txt", student, homeworkCount, "Kietuoliu");
+                writeFile("vargsiukai" + std::to_string(studentCount) + ".txt", bad, homeworkCount, "Vargsiuku");
+                bad.clear();
+                vector<Data>().swap(bad);
                 student.clear();
                 vector<Data>().swap(student);
 
-                //suskirstyti studentai įrašomi į atskirus failus, vektoriai good ir bad taip pat ištrinami ir panaikinama jų užimama atmintis
-                writeFile("kietuoliai" + std::to_string(studentCount) + ".txt", good, homeworkCount, "Kietuoliu");
-                writeFile("vargsiukai" + std::to_string(studentCount) + ".txt", bad, homeworkCount, "Vargsiuku");
-                good.clear();
-                vector<Data>().swap(good);
-                bad.clear();
-                vector<Data>().swap(bad);
 
                 //sustabdomas laiko skaičiavimas
                 auto end = std::chrono::high_resolution_clock::now();
@@ -102,7 +100,6 @@ int main() {
             Data temporary;
             //kintamasis namų darbų kiekiui, kurį įveda vartotojas, vektorius good - studentams, kurių vidurkiai >= 5, ir bad - kurių vidurkiai < 5
             int homeworkCount;
-            list<Data> good;
             list<Data> bad;
 
             //vartotojas įveda namų darbų kiekį
@@ -125,14 +122,13 @@ int main() {
                 //nuskaitomas failas į student vektorių
                 readFile(studentList, studentCount, homeworkCount, fileName);
 
-                //studentai suskirstomi pagal vidurkį, sąrašas studentList ištrinamas
-                distribute(studentList, good, bad);
-                studentList.clear();
+                //studentai suskirstomi pagal vidurkį
+                distribute(studentList, bad);
 
-                //suskirstyti studentai įrašomi į atskirus failus, vektoriai good ir bad taip pat ištrinami ir panaikinama jų užimama atmintis
-                writeFile("kietuoliai" + std::to_string(studentCount) + ".txt", good, homeworkCount, "Kietuoliu");
+                //suskirstyti studentai įrašomi į atskirus failus, sąrašai ištrinami
+                writeFile("kietuoliai" + std::to_string(studentCount) + ".txt", studentList, homeworkCount, "Kietuoliu");
                 writeFile("vargsiukai" + std::to_string(studentCount) + ".txt", bad, homeworkCount, "Vargsiuku");
-                good.clear();
+                studentList.clear();
                 bad.clear();
 
                 //sustabdomas laiko skaičiavimas
