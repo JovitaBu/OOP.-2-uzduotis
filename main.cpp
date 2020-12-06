@@ -1,22 +1,22 @@
-/*#include "comparator.h"
+#include "comparator.h"
 #include "final.h"
 #include "check.h"
 #include "createFiles.h"
 #include "reading.h"
 #include "distribution.h"
-#include "output.h"*/
+#include "output.h"
 
 #include <iostream>
 #include <fstream>
 #include <iomanip>
 
 
-#include "comparator.cpp"
+/*#include "comparator.cpp"
 #include "check.cpp"
 #include "createFiles.cpp"
 #include "reading.cpp"
 #include "distribution.cpp"
-#include "output.cpp"
+#include "output.cpp"*/
 
 using std::cout;
 using std::cin;
