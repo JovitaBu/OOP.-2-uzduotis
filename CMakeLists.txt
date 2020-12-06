@@ -3,8 +3,6 @@ project(OOP__1_uzduotis_1_0)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(.)
-
 add_executable(OOP__1_uzduotis_1_0
         check.cpp
         check.h
