@@ -1,5 +1,5 @@
 #include "reading.h"
-#include "final.cpp"
+#include "final.h"
 
 
 void readFile(std::vector<Data> &student, int studentCount, int homeworkCount, std::string fileName){
