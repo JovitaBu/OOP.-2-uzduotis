@@ -4,9 +4,14 @@
 
 Sukurti programą, kuri nuskaito studentų vardus, pavardes, namų darbų pažymius ir egzamino įvertinimą bei suskaičiuoja galutinį balą. Taikoma formulė GALUTINIS = 0,4×VIDURKIS + 0,6×EGZAMINAS. 
 
+## Įdiegimo istrukcija
+
+- Parsisiųskite naujausią versiją.
+- Naudojantis *CMakeLists.txt* sukompiliuokite ir paleiskite programą.
+
 ## Naudojimosi instrukcija
 
-- Paleiskite programą ir sekite nurodymus. Jums bus pateikiami pasirinkimai, kuriuos reikės įvesti klaviatūra.
+- Paleiskite programą ir sekite nurodymus. Jums bus pateikiami pasirinkimai, kuriuos reikės įvesti klaviatūra. (Failas *kursiokai.txt* pritaikytas nuskaitymui tik su 5 namų darbais.)
 
 ## v0.1 (09-27)
 
@@ -82,7 +87,7 @@ Tiek darbas su vektoriais, tiek su sąrašais, užtrunka panašų laiko tarpą (
 
 **Koreguota**
 - Optimizuota *checkStudentCount* funkcija *check.cpp* faile.
-- Dėl naudojama kompiliatoriaus, *main.cpp* faile *include*'inami *.cpp*, o ne *.h* failai. Anksčiau kodas buvo keistas ir rašytas su *header* failais, tačiau galiausiai nuspręsta palikti su *.cpp*.
+- Dėl naudojamo kompiliatoriaus, *main.cpp* faile *include*'inami *.cpp*, o ne *.h* failai. Anksčiau kodas buvo keistas ir rašytas su *header* failais, tačiau galiausiai nuspręsta palikti su *.cpp*.
 
 **Naudoto kompiuterio parametrai**
 - CPU: Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz 2.71GHz
