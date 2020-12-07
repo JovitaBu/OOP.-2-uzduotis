@@ -11,7 +11,7 @@
 
 ## Naudojimosi instrukcija
 
-- Paleiskite programą ir sekite nurodymus. Jums bus pateikiami pasirinkimai, kuriuos reikės įvesti klaviatūra. (Failas *kursiokai.txt* pritaikytas nuskaitymui tik su 5 namų darbais.)
+- Paleiskite programą ir sekite nurodymus. Jums bus pateikiami pasirinkimai, kuriuos reikės įvesti klaviatūra.
 
 ## v1.1 (12-07)
 
