@@ -1,22 +1,17 @@
 cmake_minimum_required(VERSION 3.17)
-project(OOP__1_uzduotis_1_0)
+project(OOP__2_uzduotis_1_1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(OOP__1_uzduotis_1_0
+add_executable(OOP__2_uzduotis_1_1
         check.cpp
         check.h
-        comparator.cpp
-        comparator.h
-        createFiles.cpp
-        createFiles.h
-        Data.h
         distribution.cpp
         distribution.h
-        final.cpp
-        final.h
         main.cpp
-        output.cpp
-        output.h
-        reading.cpp
-        reading.h)
+        Student.cpp
+        Student.h
+        workWithFiles.cpp
+        workWithFiles.h
+        workWithScreen.cpp
+        workWithScreen.h)
