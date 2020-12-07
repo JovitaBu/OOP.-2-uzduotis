@@ -3,6 +3,7 @@
 using std::cin;
 using std::cout;
 
+//tikrina, ar pasirinkimas lygus 1 arba 2
 void checkChoice(int &a){
     cin >> a;
     do{
@@ -21,6 +22,7 @@ void checkChoice(int &a){
     } while (cin.fail() || (a!=1 && a!=2));
 }
 
+//tikrina, ar įvestas skaičius yra teigiamas (>0)
 void checkCount(int &a){
     cin >> a;
     do{
@@ -39,6 +41,7 @@ void checkCount(int &a){
     } while (cin.fail() || a < 1);
 }
 
+//tikrina, ar įvestas skaičius yra iš intervalo 0-10 (tik sveikieji)
 void checkGrade(float &a){
     cin >> a;
     do{
