@@ -1,12 +1,10 @@
-#pragma once 
+#pragma once
 
-#include "Data.h"
+#include "Student.h"
 
 #include <chrono>
 #include <algorithm>
 #include <iterator>
 #include <numeric>
-#include <list>
 
-void distribute(std::vector<Data> &student, std::vector<Data> &bad);
-void distribute(std::list<Data> &student, std::list<Data> &bad);
+void distribute(std::vector<Student> &student, std::vector<Student> &bad);
