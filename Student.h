@@ -18,6 +18,15 @@ class Student{
         //konstruktorius
         Student();
 
+        //kopijavimo konstruktorius
+        Student (const Student &s);
+
+        //kopijavimo priskirties operatorius
+        Student& operator= (const Student& s );
+
+        //išvedimo operatorius
+        friend std::ostream& operator<< (std::ostream& o, const Student &s);
+
         //getter'iai
         std::string getName();
         std::string getSurname();
@@ -30,6 +39,9 @@ class Student{
         void setFinalGradeMean(float f);
         void setFinalGradeMedian(float f);
         void setData(std::string name, std::string surname, std::vector<float> homework, float exam);
+
+        //destruktorius
+        ~Student(){};
         
 };
 
