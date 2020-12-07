@@ -7,6 +7,31 @@ Student::Student() {
     finalGradeMean_ = 0;
     finalGradeMedian_ = 0;
 }
+Student::Student (const Student &s) {
+    name_ = s.name_;
+    surname_ = s.surname_;
+    exam_ = s.exam_;
+    finalGradeMean_ = s.finalGradeMean_;
+    finalGradeMedian_ = s.finalGradeMedian_;
+    homework_ = s.homework_;
+};
+Student& Student::operator= (const Student& s) {
+    name_ = s.name_;
+    surname_ = s.surname_;
+    exam_ = s.exam_;
+    finalGradeMean_ = s.finalGradeMean_;
+    finalGradeMedian_ = s.finalGradeMedian_;
+    homework_ = s.homework_;
+    return *this;
+}
+std::ostream& operator<< (std::ostream& ostr, const Student &s) {
+    ostr << "Vardas: " << s.name_ <<  "\nPavarde: " << s.surname_ << "\nNamu darbai:";
+    for (float h : s.homework_){
+        ostr << " " << h;
+    }
+    ostr << "\nEgzaminas: " << s.exam_ << "\n";
+    return ostr;
+}
 
 void Student::setData(std::string name, std::string surname, std::vector<float> homework, float exam) {
     name_ = name;
