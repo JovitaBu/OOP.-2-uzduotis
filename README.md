@@ -24,3 +24,7 @@
 ![](struct_vs_class.png)
 
 Lentelė, iliustruojanti struktūros ir klasės veikimo spartą. Matome, kad klasės veikia 8-9 kartus lėčiau
+
+![](flags.png)
+
+Lentelė, iliustruojanti, kaip veikia kodas naudojant optimizavimo *flag*'us. Pastebima, kad *flag*'ai reikšmės turi tik, kai didelis duomenų kiekis (paskutinė eilutė).
