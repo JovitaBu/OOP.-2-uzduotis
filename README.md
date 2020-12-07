@@ -2,7 +2,7 @@
 
 ## Užduotis
 
-[1-osios užduoties] (https://github.com/JovitaBu/OOP.-1-uzduotis) pratęsimas/tobulinimas.
+[1-osios užduoties](https://github.com/JovitaBu/OOP.-1-uzduotis) pratęsimas/tobulinimas.
 
 ## Įdiegimo istrukcija
 
