@@ -28,3 +28,18 @@ Lentelė, iliustruojanti struktūros ir klasės veikimo spartą. Matome, kad kla
 ![](flags.png)
 
 Lentelė, iliustruojanti, kaip veikia kodas naudojant optimizavimo *flag*'us. Pastebima, kad *flag*'ai reikšmės turi tik, kai didelis duomenų kiekis (paskutinė eilutė).
+
+## v1.2 (12-07)
+
+- Realizuota *Rule of three*: sukurtas destruktorius, kopijavimo konstruktorius, kopijavimo priskirties operatorius.
+- Pridėtas išvedimo operatorius. T.y.
+```cpp
+cout << student; 
+```
+išveda duomenis, kuriuos turi kiekvienas klasės *Student* tipo narys:
+```
+Vardas: vardas
+Pavarde: pavarde
+Namu darbai: 1 2 3 4 5
+Egzaminas: 7
+```
