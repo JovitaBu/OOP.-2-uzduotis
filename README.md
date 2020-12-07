@@ -21,3 +21,6 @@
 - Funkcijos iš *output* perkeltos į *workWithScreen*. Pastarajame faile pridėta ir funkcija, kurioje nuskaitomi/generuojami studentų duomenys, kai juos veda vartotojas. Funkcija pritaikoma *main*'e, todėl sumažėja kodo pasikartojimo.
 - Programa gali nuskaityti *kursiokai.txt* su iš anksto nežinomu namų darbų kiekiu.
 
+![](struct_vs_class.png)
+
+Lentelė, iliustruojanti struktūros ir klasės veikimo spartą. Matome, kad klasės veikia 8-9 kartus lėčiau
