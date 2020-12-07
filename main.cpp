@@ -1,169 +1,96 @@
-#include "comparator.h"
-#include "final.h"
+#include "workWithScreen.h"
 #include "check.h"
-#include "createFiles.h"
-#include "reading.h"
 #include "distribution.h"
-#include "output.h"
+#include "Student.h"
+#include "workWithFiles.h"
 
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-
-
-/*#include "comparator.cpp"
-#include "check.cpp"
-#include "createFiles.cpp"
-#include "reading.cpp"
-#include "distribution.cpp"
-#include "output.cpp"*/
+#include <chrono>
+#include <sstream>
 
 using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
 using std::vector;
-using std::list;
 
 int main() {
 
-    //kintamieji pasirinkimui, ar atlikti failų generavimą ir kokį tipą duomenų saugojimui naudoti
+    //vartotojas pasirenka, ar atlikti failų generavimą, sukuriamas atitinkamas kintamasis
     int doGeneration;
-    int type;
-
-    //vartotojas pasirenka, ar atlikti failų generavimą ir kokį konteinerį naudoti
     cout << "Ar norite atlikti visu duomenu generavima (sukuriami penki failai)?\n(1) taip;\n(2) ne: ";
     checkChoice(doGeneration);
-    cout <<"\nNaudoti\n(1) vektorius;\n(2) sarasus: ";
-    checkChoice(type);
 
     //jei atliekamas failų generavimas
     if(doGeneration == 1){
 
-        //jei naudojami vektoriai
-        if (type == 1){
+        //vartotojas įveda namų darbų kiekį, tam atitinkamas kintamasis
+        int homeworkCount;
+        cout << "\nIveskite, po kiek namu darbu generuoti: ";
+        checkCount(homeworkCount);
+        cout << endl;
 
-            //vektoriuje student bus saugomi visų studentų duomenys, o temporary naudojamas duomenų nuskaitymui
-            vector<Data> student;
-            Data temporary;
+        //vektorius bad - studentams, kurių vidurkiai < 5
+        vector<Student> bad;
 
-            //kintamasis namų darbų kiekiui, kurį įveda vartotojas, vektorius good - studentams, kurių vidurkiai >= 5, ir bad - kurių vidurkiai < 5
-            int homeworkCount;
-            vector<Data> bad;
+        //sukamas ciklas sukurti keliams failams
+        for (int studentCount = 1000; studentCount <= 10000000; studentCount *= 10){
+            
+            //pradedamas skaičiuoti laikas
+            auto start = std::chrono::high_resolution_clock::now();
 
-            //vartotojas įveda namų darbų kiekį
-            cout << "\nIveskite, po kiek namu darbu generuoti: ";
-            checkCount(homeworkCount);
+            //vektorius visiems studentams saugoti, po skirtymo lieka tik studentai, kurių vidurkiai >= 5
+            vector<Student> student(studentCount);
+
+            //iš karto sukuriamas failo pavadinimas, kad to nereiktų daryti kitose funkcijose
+            string fileName = "student" + std::to_string(studentCount) + ".txt";
+
+            //sugeneruojamas failas
+            generateFile(fileName, studentCount, homeworkCount);
+
+            //nuskaitomas failas į student vektorių
+            readFile(student, studentCount, homeworkCount, fileName);
+
+            //studentai suskirstomi pagal vidurkį
+            distribute(student, bad);
+
+            //suskirstyti studentai įrašomi į atskirus failus
+            writeFile("kietuoliai" + std::to_string(studentCount) + ".txt", student, homeworkCount, "Kietuoliu");
+            writeFile("vargsiukai" + std::to_string(studentCount) + ".txt", bad, homeworkCount, "Vargsiuku");
+
+            //vektoriai ištrinami ir panaikinama jų užimama atmintis
+            bad.clear();
+            vector<Student>().swap(bad);
+            student.clear();
+            vector<Student>().swap(student);
+
+            //sustabdomas laiko skaičiavimas
+            auto end = std::chrono::high_resolution_clock::now();
+
+            //išvedamas sugaištas laikas
+            std::cout << "Visas sugaistas laikas " << studentCount << " studentu duomenims: " << std::chrono::duration<double>(end - start).count() << " s." << endl;
             cout << endl;
-
-            //sukamas ciklas sukurti keliams failams
-            for (int studentCount = 1000; studentCount <= 10000000; studentCount *= 10){
-                
-                //pradedamas skaičiuoti laikas
-                auto start = std::chrono::high_resolution_clock::now();
-
-                //iš karto sukuriamas failo pavadinimas, kad to nereiktų daryti kitose funkcijose
-                string fileName = "student" + std::to_string(studentCount) + ".txt";
-
-                //sugeneruojamas failas
-                generateFile(fileName, studentCount, homeworkCount);
-
-                //nuskaitomas failas į student vektorių
-                readFile(student, studentCount, homeworkCount, fileName);
-
-                //studentai suskirstomi pagal vidurkį
-                distribute(student, bad);
-                
-                //suskirstyti studentai įrašomi į atskirus failus, vektoriai ištrinami ir panaikinama jų užimama atmintis
-                writeFile("kietuoliai" + std::to_string(studentCount) + ".txt", student, homeworkCount, "Kietuoliu");
-                writeFile("vargsiukai" + std::to_string(studentCount) + ".txt", bad, homeworkCount, "Vargsiuku");
-                bad.clear();
-                vector<Data>().swap(bad);
-                student.clear();
-                vector<Data>().swap(student);
-
-
-                //sustabdomas laiko skaičiavimas
-                auto end = std::chrono::high_resolution_clock::now();
-
-                //išvedamas sugaištas laikas
-                std::cout << "Visas sugaistas laikas " << studentCount << " studentu duomenims: " << std::chrono::duration<double>(end - start).count() << " s." << endl;
-                cout << endl;
-            }
-        }
-
-        //jei naudojamas list
-        if (type == 2){
-
-            //sąraše studentList bus saugomi visų studentų duomenys, o temporary naudojamas duomenų nuskaitymui
-            list<Data> studentList;
-            Data temporary;
-            //kintamasis namų darbų kiekiui, kurį įveda vartotojas, vektorius good - studentams, kurių vidurkiai >= 5, ir bad - kurių vidurkiai < 5
-            int homeworkCount;
-            list<Data> bad;
-
-            //vartotojas įveda namų darbų kiekį
-            cout << "\nIveskite, po kiek namu darbu generuoti: ";
-            checkCount(homeworkCount);
-            cout << endl;
-
-            //sukamas ciklas dirbti su keliais failais
-            for (int studentCount = 1000; studentCount <= 10000000; studentCount *= 10){
-                
-                //pradedamas skaičiuoti laikas
-                auto start = std::chrono::high_resolution_clock::now();
-
-                //iš karto sukuriamas failo pavadinimas, kad to nereiktų daryti kitose funkcijose
-                string fileName = "student" + std::to_string(studentCount) + ".txt";
-
-                //sugeneruojamas failas
-                generateFile(fileName, studentCount, homeworkCount);
-
-                //nuskaitomas failas į student vektorių
-                readFile(studentList, studentCount, homeworkCount, fileName);
-
-                //studentai suskirstomi pagal vidurkį
-                distribute(studentList, bad);
-
-                //suskirstyti studentai įrašomi į atskirus failus, sąrašai ištrinami
-                writeFile("kietuoliai" + std::to_string(studentCount) + ".txt", studentList, homeworkCount, "Kietuoliu");
-                writeFile("vargsiukai" + std::to_string(studentCount) + ".txt", bad, homeworkCount, "Vargsiuku");
-                studentList.clear();
-                bad.clear();
-
-                //sustabdomas laiko skaičiavimas
-                auto end = std::chrono::high_resolution_clock::now();
-
-                //išvedamas sugaištas laikas
-                std::cout << "Visas sugaistas laikas " << studentCount << " studentu duomenims: " << std::chrono::duration<double>(end - start).count() << " s." << endl;
-                cout << endl;
-            }
         }
     }
 
-    //jei vartotojas pats įveda duomenis
+    //jei failai negeneruojami
     if (doGeneration == 2){
 
-        //vektoriuje student bus saugomi visų studentų duomenys, o temporary naudojamas duomenų nuskaitymui
-        vector<Data> student;
-        Data temporary;
-
-        //kintamasis studentų kiekiui, įveda vartotojas
-        int studentCount;
-
-        //kintamasis, ar nuskaityti duomenis iš kursiokai.txt
+        //kintamasis pasirinkimui, ar nuskaityti duomenis iš kursiokai.txt
         int readData;
 
-        //vartotojas pasirenka, ar duomenis įvesti, ar nuskaityt
+        //vartotojas pasirenka, ar duomenis įvesti, ar nuskaityti
         cout << "\nPasirinkite:\n(1) duomenis ivesti;\n(2) duomenis nuskaityti is kursiokai.txt failo: ";
         checkChoice(readData);
 
         //jei duomenis veda vartotojas
         if (readData == 1){
 
-            //kintamieji pasirinkimui, ar skaičiuoti galutinį pagal vidurkį ar medianą bei ar generuoti namų darbų ir egzamino pažymius
-            int countBy;
-            int doRandom;
+            //kintamieji pasirinkimui, ar skaičiuoti galutinį pagal vidurkį ar medianą;
+            //ar generuoti namų darbų ir egzamino pažymius ir kintamasis studentų skaičiui
+            int countBy, doRandom, studentCount;
             
             //vartotojas pasirenka, kaip skaičiuoti galutinį balą, ar generuoti pažymius, įveda studentų skaičių
             cout << "\nPasirinkite:\n(1) skaiciuoti pagal namu darbu vidurki;\n(2) skaiciuoti pagal namu darbu mediana: ";
@@ -173,116 +100,75 @@ int main() {
             cout << "\nIveskite studentu skaiciu: ";
             checkCount(studentCount);
             cout << "\n";
-            
-            //jei visus duomenis veda vartotojas
-            if (doRandom == 2){
 
-                //kintamasis namų darbų nuskaitymui
-                float temp;
+            //vektorius studentų duomenims saugoti
+            vector<Student> student(studentCount);
 
-                //sukamas ciklas, kol įvedami visų studentų duomenys
-                for (int i = 0; i < studentCount; i++){
-
-                    //vartotojas įveda vardą, pavardę, egzamino pažymį
-                    cout << "\nIveskite studento varda, pavarde, egzamino ivertinima ir namu darbus (spauskite enter): ";
-                    cin >> temporary.name >> temporary.surname;
-                    checkGrade(temporary.exam);
-
-                    //vartotojas įveda namų darbus 
-                    while (cin.peek() != '\n'){
-                        checkGrade(temp);
-                        temporary.homework.push_back(temp);
-                    }
-                    
-                    //suskaičiuojamas galutinis balas pagal vartotojo pasirinkimą
-                    final(temporary, countBy);
-                    
-                    //nuskaityti duomenys įrašomi į student vektorių, ištrinami namų darbai temporary, kad būtų galima naudoti tolimesniam duomenų nuskaitymui
-                    student.push_back(temporary);
-                    temporary.homework.clear();
-                }
-            }
-
-            //jei pažymiai generuojami
-            if (doRandom == 1){
-
-                //sukamas ciklas, kol vartotojas įveda visus vardu ir pavardes, o pažymiai sugeneruojami
-                for (int i = 0; i < studentCount; i++){
-
-                    //vartotojas įveda studento vardą ir pavardę
-                    cout << "\nIveskite studento varda ir pavarde: ";
-                    cin >> temporary.name >> temporary.surname;
-
-                    //namų darbų kiekiui ir pažymių generavimui
-                    std::mt19937 mt(static_cast<long unsigned int>(std::chrono::high_resolution_clock::now().time_since_epoch().count()));
-                    std::uniform_int_distribution<int> distGrade(1, 10);
-                    std::uniform_int_distribution<int> distCount(1, 20);
-
-                    //sugeneruojamas egzamino pažymys
-                    temporary.exam = distGrade(mt);
-
-                    //sugeneruojami namų darbų pažymiai
-                    for (int j = 0; j < distCount(mt); j++){
-                        temporary.homework.push_back(distGrade(mt));
-                    }
-
-                    //suskaičiuojamas galutinis balas pagal vartotojo pasirinkimą
-                    final(temporary, countBy);
-
-                    //duomenys įrašomi į student vektorių, ištrinami namų darbai temporary, kad būtų galima naudoti tolimesniam duomenų nuskaitymui
-                    student.push_back(temporary);
-                    temporary.homework.clear();
-                }
-            }
+            //nuskaitomi/generuojami duomenys
+            inputData(student, doRandom, studentCount, countBy);
 
             cout << endl;
             cout << endl;
-            
+
             //išvedami rezultatai
             results(student, countBy);
 
         }
 
-
         //jei duomenys nuskaitomi iš kursiokai.txt
         if (readData == 2){
+
+            //kintamieji studentų duomenų nuskaitymui
+            std::string name, surname;
+            float exam, temp; //temp - namų darbų nuskaitymui
+            std::vector<float> homework;
+
+            //vektorius studentų duomenims saugoti, temporary - duomenų nuskaitymui
+            vector<Student> student;
+            Student temporary;
 
             //atidaromas failas
             std::ifstream dataFile("kursiokai.txt");
 
-            //nuskaitoma pirma eilutė
+            //nuskaitoma pirma eilutė, suskirstoma, įkeliama į vektorių, sužinomas namų darbų skaičius
             string firstLine;
             getline(dataFile, firstLine);
-
-            //kintamasis namų darbų nuskaitymui
-            float temp;
+            std::istringstream iss(firstLine);
+            vector<string> line;
+            do {
+                std::string parts;
+                iss >> parts;
+                line.push_back(parts);
+            } while (iss);
+            int homeworkCount = line.size() - 4;
 
             //sukamas ciklas, kol baigiasi failas
             while (!dataFile.eof()){
 
                 //nuskaitomi vardas ir pavardė
-                dataFile >> temporary.name >> temporary.surname;
+                dataFile >> name >> surname;
 
-                //nuskaitomi 5 namų darbai ir egzaminas
-                for (int i = 0; i < 5; i++){
+                //nuskaitomi namų darbai ir egzaminas
+                for (int i = 0; i < homeworkCount; i++){
                     dataFile >> temp;
-                    temporary.homework.push_back(temp);
+                    homework.push_back(temp);
                 }
-                dataFile >> temporary.exam;
+                dataFile >> exam;
 
-                //suskaičiuojami vidurkiai abiem būdais
-                temporary.finalGradeMean = finalByMean(temporary);
-                temporary.finalGradeMedian = finalByMedian(temporary);
-            
-                //nuskaityti duomenys įrašomi į student vektorių, ištrinami namų darbai temporary, kad būtų galima naudoti tolimesniam duomenų nuskaitymui
+                //priskiriami duomenys, suskaičiuojami vidurkiai abiem būdais,viskas įrašoma į student vektorių
+                temporary.setData(name, surname, homework, exam);
+                temporary.setFinalGradeMean(finalByMean(temporary));
+                temporary.setFinalGradeMedian(finalByMedian(temporary));
                 student.push_back(temporary);
-                temporary.homework.clear();
+
+                //ištrinami namų darbai, kad būtų galima naudoti tolimesniam duomenų nuskaitymui
+                homework.clear();
             }
 
             //uždaromas failas
             dataFile.close();
 
-            //surūšiuojamas studentų sąrašas (vektorius)
+            //surūšiuojamas studentų sąrašas (vektorius) pagal vardus
             sort(student.begin(), student.end(), compareNames);
 
             cout << endl;
@@ -291,6 +177,5 @@ int main() {
             results(student, 0);
         }
     }
-
-        return 0;
+    return 0;
 }
