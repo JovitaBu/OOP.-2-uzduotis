@@ -5,18 +5,17 @@
 #include <vector>
 #include <algorithm>
 
+#include "Person.h"
 
-class Student{
+class Student: public Person {
     private:
-        std::string name_;
-        std::string surname_;
         float exam_;
         float finalGradeMean_;
         float finalGradeMedian_;
         std::vector<float> homework_;
     public:
         //konstruktorius
-        Student();
+        Student() : Person{} {exam_ = 0; finalGradeMean_ = 0; finalGradeMedian_ = 0;};
 
         //kopijavimo konstruktorius
         Student (const Student &s);
@@ -28,8 +27,6 @@ class Student{
         friend std::ostream& operator<< (std::ostream& o, const Student &s);
 
         //getter'iai
-        std::string getName();
-        std::string getSurname();
         float getExam();
         float getFinalGradeMean();
         float getFinalGradeMedian();
@@ -40,9 +37,10 @@ class Student{
         void setFinalGradeMedian(float f);
         void setData(std::string name, std::string surname, std::vector<float> homework, float exam);
 
+        std::string statusas() {return "studentas";}
+
         //destruktorius
         ~Student(){};
-        
 };
 
 //lygina vardus
