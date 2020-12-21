@@ -15,7 +15,7 @@
 
 ## v1.5 (12-21)
 
--Sukurta abstrakčioji *base* klasė *Person*, iš jos išvedama klasė *Student*.
+- Sukurta abstrakčioji *base* klasė *Person*, iš jos išvedama klasė *Student*.
 
 ## v1.2 (12-07)
 
