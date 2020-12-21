@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(OOP__2_uzduotis_1_1)
+project(OOP__2_uzduotis_1_5)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -14,4 +14,7 @@ add_executable(OOP__2_uzduotis_1_1
         workWithFiles.cpp
         workWithFiles.h
         workWithScreen.cpp
-        workWithScreen.h)
+        workWithScreen.h 
+        Person.cpp 
+        Person.h)
+
