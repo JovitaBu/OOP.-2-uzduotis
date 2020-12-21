@@ -1,12 +1,5 @@
 #include "Student.h"
 
-Student::Student() {
-    name_ = "";
-    surname_ = "";
-    exam_ = 0;
-    finalGradeMean_ = 0;
-    finalGradeMedian_ = 0;
-}
 Student::Student (const Student &s) {
     name_ = s.name_;
     surname_ = s.surname_;
@@ -48,12 +41,6 @@ void Student::setFinalGradeMedian(float f) {
     else{ return; }
 }
 
-std::string Student::getName() { 
-    return name_;
-}
-std::string Student::getSurname() {
-    return surname_;
-}
 float Student::getExam() {
     return exam_;
 }
@@ -62,7 +49,7 @@ float Student::getFinalGradeMean() {
 }
 float Student::getFinalGradeMedian() {
     return finalGradeMedian_;
-    }
+}
 std::vector<float> Student::getHomework() {
     return homework_;
 }
@@ -120,7 +107,7 @@ float finalByMedian(Student student){
     int size = homework.size();
 
 
-    //grąžina galutinio balo reikšmę, jei mediana - dviejų narių suma 
+    //grąžina galutinio balo reikšmę, jei mediana - dviejų narių suma
     if (size % 2 == 0){
         return (homework[size / 2] + homework[size / 2 - 1]) * 1.0 / 2 * 0.4 + student.getExam() * 0.6;
     }
@@ -130,4 +117,3 @@ float finalByMedian(Student student){
         return homework[size / 2] * 0.4 + student.getExam() * 0.6;
     }
 }
-
