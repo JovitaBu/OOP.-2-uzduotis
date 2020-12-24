@@ -13,6 +13,10 @@
 
 - Paleiskite programą ir sekite nurodymus. Jums bus pateikiami pasirinkimai, kuriuos reikės įvesti klaviatūra.
 
+## v2.0 (12-24)
+
+- Pridėta dokumentacija, kurta su Doxygen.
+
 ## v1.5 (12-21)
 
 - Sukurta abstrakčioji *base* klasė *Person*, iš jos išvedama klasė *Student*.
